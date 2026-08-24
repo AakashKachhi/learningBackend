@@ -26,6 +26,21 @@ app.get("/", (req, res) => {
     console.log(req.session.id)
 })
 
+app.get("/login", (req, res) => {
+    req.session.user = {
+        name: "Aakash",
+        email: "aakash@gmail.com"
+    }
+
+    res.status(200).send(`${req.session.user.name} has logIn the session`)
+})
+
+app.get("/logout", (req, res) => {
+    req.session.destroy()
+
+    res.send("User has been logOut")
+})
+
 app.listen(3000, () => {
     console.log("Server is running on Port 3000")
 })
